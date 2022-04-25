@@ -1,12 +1,5 @@
 pipeline {
   agent any 
-  environment {
-       WS_APIKEY = credentials('whitesource-apikey')
-       WS_WSS_URL = "https://saas-eu.whitesourcesoftware.com/agent"
-       WS_USERKEY = credentials('whitesource-serviceaccount-userkey')
-       WS_PRODUCTNAME = "webapp"
-       WS_PROJECTNAME = "${JOB_NAME}"
-   }
   tools {
     maven 'Maven'
   }
