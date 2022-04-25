@@ -13,6 +13,7 @@ fi
 if [ ! -d "$CACHE_DIRECTORY" ]; then
     echo "Initially creating persistent directory: $CACHE_DIRECTORY"
     mkdir -p "$CACHE_DIRECTORY"
+    mkdir -p "$(pwd)/odc-reports"
 fi
 
 # Make sure we are using the latest version
