@@ -1,5 +1,12 @@
 pipeline {
   agent any 
+  environment {
+       WS_APIKEY = credentials('whitesource-apikey')
+       WS_WSS_URL = "https://saas-eu.whitesourcesoftware.com/agent"
+       WS_USERKEY = credentials('whitesource-serviceaccount-userkey')
+       WS_PRODUCTNAME = "webapp"
+       WS_PROJECTNAME = "${JOB_NAME}"
+   }
   tools {
     maven 'Maven'
   }
@@ -21,14 +28,6 @@ pipeline {
       }
     }
     
-    node {
-  environment {
-       WS_APIKEY = credentials('whitesource-apikey')
-       WS_WSS_URL = "https://saas-eu.whitesourcesoftware.com/agent"
-       WS_USERKEY = credentials('whitesource-serviceaccount-userkey')
-       WS_PRODUCTNAME = "Your Product Name"
-       WS_PROJECTNAME = "${JOB_NAME}"
-   }
   stage('Download Unified Agent') {
    sh 'curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar'
   }
