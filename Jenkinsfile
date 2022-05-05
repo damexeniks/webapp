@@ -21,6 +21,20 @@ pipeline {
       }
     }
     
+      stage('Source Composition Analysis') {
+        environment {
+          WS_APIKEY = credentials('whitesource-apikey')
+          WS_WSS_URL = "https://saas-eu.whitesourcesoftware.com/agent"
+          WS_USERKEY = credentials('whitesource-serviceaccount-userkey')
+          WS_PRODUCTNAME = "webapp_test"
+          WS_PROJECTNAME = "webapp_test"
+   }
+    steps {
+   	sh 'curl -LJO https://unified-agent.s3.amazonaws.com/wss-unified-agent.jar'
+    	sh 'java -jar wss-unified-agent.jar' 
+  }
+}
+    
     stage ('SAST') {
       steps {
         withSonarQubeEnv('sonar') {
