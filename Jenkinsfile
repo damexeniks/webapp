@@ -21,7 +21,7 @@ pipeline {
       }
     }
     
-      stage('Source Composition Analysis') {
+      stage ('Source Composition Analysis') {
        environment {
           WS_APIKEY = credentials('whitesource-apikey')
           WS_WSS_URL = "https://saas-eu.whitesourcesoftware.com/agent"
